@@ -56,9 +56,14 @@ class MovieListViewController: UIViewController {
 extension MovieListViewController: PinterestLayoutDelegate {
     
     func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat {
-        let imageView = UIImageView()
-        imageView.kf.setImage(with: URL(string: self.viewModel.items[indexPath.item].movie.posterUrl))
-        let image = imageView.image ?? #imageLiteral(resourceName: "Polar Bear Pillow Case")
+        let url = self.viewModel.items[indexPath.item].movie.posterUrl
+        var image: UIImage = #imageLiteral(resourceName: "ImageNotFound")
+        if !url.isEmpty {
+            let imageData = try? Data(contentsOf: URL(string: url)!)
+            if imageData != nil {
+                image = UIImage(data: imageData!)!
+            }
+        }
         let height = image.size.height
         
         return height
@@ -74,7 +79,12 @@ extension MovieListViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as! MovieCell
-        cell.posterImageView.kf.setImage(with: URL(string: self.viewModel.items[indexPath.item].movie.posterUrl))
+        let url = self.viewModel.items[indexPath.item].movie.posterUrl
+        if !url.isEmpty {
+            cell.posterImageView.kf.setImage(with: URL(string: url))
+        } else {
+            cell.posterImageView.image = #imageLiteral(resourceName: "ImageNotFound")
+        }
         return cell
     }
     
