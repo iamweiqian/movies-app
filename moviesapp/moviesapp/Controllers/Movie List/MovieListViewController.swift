@@ -66,9 +66,7 @@ extension MovieListViewController: PinterestLayoutDelegate {
         }
         
         let numberOfColumns: CGFloat = 2
-        let xInsets: CGFloat = 10
-        let cellSpacing: CGFloat = 5
-        let height = (image.size.height / numberOfColumns) - (xInsets + cellSpacing)
+        let height = image.size.height / numberOfColumns
         
         return height
     }
