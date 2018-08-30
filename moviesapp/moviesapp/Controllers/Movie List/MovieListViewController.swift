@@ -66,7 +66,8 @@ extension MovieListViewController: PinterestLayoutDelegate {
         }
         
         let numberOfColumns: CGFloat = 2
-        let height = image.size.height / numberOfColumns
+        let labelViewHeight: CGFloat = 125
+        let height = (image.size.height + labelViewHeight) / numberOfColumns
         
         return height
     }
@@ -81,6 +82,8 @@ extension MovieListViewController: UICollectionViewDataSource, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as! MovieCell
+        cell.titleLabel.text = self.viewModel.items[indexPath.item].movie.title
+        cell.yearLabel.text = self.viewModel.items[indexPath.item].movie.year
         let url = self.viewModel.items[indexPath.item].movie.posterUrl
         if !url.isEmpty {
             cell.posterImageView.kf.setImage(with: URL(string: url))

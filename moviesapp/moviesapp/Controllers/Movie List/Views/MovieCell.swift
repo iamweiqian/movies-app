@@ -11,6 +11,8 @@ import UIKit
 class MovieCell: UICollectionViewCell {
 
     @IBOutlet weak var posterImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var yearLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
