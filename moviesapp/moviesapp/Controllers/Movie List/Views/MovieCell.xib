@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="368" height="375"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Polar Bear Pillow Case" translatesAutoresizingMaskIntoConstraints="NO" id="b9W-6h-Ys9">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="b9W-6h-Ys9">
                         <rect key="frame" x="0.0" y="0.0" width="368" height="375"/>
                     </imageView>
                 </subviews>
@@ -38,7 +38,4 @@
             <point key="canvasLocation" x="-36" y="65"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="Polar Bear Pillow Case" width="550" height="550"/>
-    </resources>
 </document>
