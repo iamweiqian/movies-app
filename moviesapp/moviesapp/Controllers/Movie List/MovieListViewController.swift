@@ -12,6 +12,8 @@ class MovieListViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
+    let images = [#imageLiteral(resourceName: "Polar Bear Pillow Case"), #imageLiteral(resourceName: "Polar Bear Pillow Case"), #imageLiteral(resourceName: "Polar Bear Pillow Case"), #imageLiteral(resourceName: "Polar Bear Pillow Case"), #imageLiteral(resourceName: "Polar Bear Pillow Case")]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,11 +38,13 @@ class MovieListViewController: UIViewController {
 extension MovieListViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return images.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as! MovieCell
+        let image = images[indexPath.item]
+        cell.posterImageView.image = image
         return cell
     }
     
