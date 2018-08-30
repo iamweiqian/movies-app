@@ -11,7 +11,7 @@ import SwiftyJSON
 
 extension Movie {
     
-    public static func getMovieList(completion: @escaping (_ beerList: [Movie], _ error: Error?) -> Void) {
+    public static func getMovieList(completion: @escaping (_ movieList: [Movie], _ error: Error?) -> Void) {
         
         guard let filePath = Bundle.main.url(forResource: "movie",
                                              withExtension: "json") else {

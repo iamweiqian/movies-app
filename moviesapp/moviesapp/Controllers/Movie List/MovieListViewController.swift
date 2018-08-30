@@ -23,6 +23,7 @@ class MovieListViewController: UIViewController {
         
         collectionView.register(UINib(nibName: "MovieCell", bundle: nil), forCellWithReuseIdentifier: "MovieCell")
         collectionView.dataSource = self
+        collectionView.delegate = self
         if let layout = collectionView.collectionViewLayout as? PinterestLayout {
             layout.delegate = self
         }
@@ -31,7 +32,6 @@ class MovieListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.navigationBar.prefersLargeTitles = true
         self.title = "Movies"
     }
@@ -75,7 +75,7 @@ extension MovieListViewController: PinterestLayoutDelegate {
     
 }
 
-extension MovieListViewController: UICollectionViewDataSource {
+extension MovieListViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.viewModel.itemCount
@@ -90,6 +90,16 @@ extension MovieListViewController: UICollectionViewDataSource {
             cell.posterImageView.image = #imageLiteral(resourceName: "ImageNotFound")
         }
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let detailsViewController = DetailsViewController()
+        detailsViewController.movieTitle = self.viewModel.items[indexPath.item].movie.title
+        detailsViewController.year = self.viewModel.items[indexPath.item].movie.year
+        detailsViewController.movieDescription = self.viewModel.items[indexPath.item].movie.storyline
+        detailsViewController.imageUrl = self.viewModel.items[indexPath.item].movie.posterUrl
+        self.navigationController?.pushViewController(detailsViewController, animated: true)
     }
     
 }
