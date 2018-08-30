@@ -6,6 +6,7 @@ target 'MoviesApp' do
   use_frameworks!
 
   # Pods for MoviesApp
-  pod 'SwiftyJSON'
+  pod 'JSONParsing'
+  pod 'Kingfisher'
 
 end

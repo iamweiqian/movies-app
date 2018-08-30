@@ -7,16 +7,19 @@
 //
 
 import UIKit
+import Kingfisher
 
 class MovieListViewController: UIViewController {
 
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var collectionView: UICollectionView!
     
-    let images = [#imageLiteral(resourceName: "Polar Bear Pillow Case"), #imageLiteral(resourceName: "programming"), #imageLiteral(resourceName: "Polar Bear Pillow Case"), #imageLiteral(resourceName: "programming"), #imageLiteral(resourceName: "programming"), #imageLiteral(resourceName: "Polar Bear Pillow Case"), #imageLiteral(resourceName: "programming")]
+    private var viewModel = MovieListViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupViewModel()
         
         collectionView.register(UINib(nibName: "MovieCell", bundle: nil), forCellWithReuseIdentifier: "MovieCell")
         collectionView.dataSource = self
@@ -32,10 +35,20 @@ class MovieListViewController: UIViewController {
         self.navigationController?.navigationBar.prefersLargeTitles = true
         self.title = "Movies"
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    private func setupViewModel() {
+        
+        self.viewModel.reloadHandler = {
+            self.collectionView.reloadData()
+        }
+        
+        self.activityIndicator.isHidden = false
+        self.activityIndicator.startAnimating()
+        
+        self.viewModel.fetchItems { _ in
+            self.activityIndicator.isHidden = true
+            self.activityIndicator.stopAnimating()
+        }
     }
 
 }
@@ -43,7 +56,9 @@ class MovieListViewController: UIViewController {
 extension MovieListViewController: PinterestLayoutDelegate {
     
     func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat {
-        let image = images[indexPath.item]
+        let imageView = UIImageView()
+        imageView.kf.setImage(with: URL(string: self.viewModel.items[indexPath.item].movie.posterUrl))
+        let image = imageView.image ?? #imageLiteral(resourceName: "Polar Bear Pillow Case")
         let height = image.size.height
         
         return height
@@ -54,13 +69,12 @@ extension MovieListViewController: PinterestLayoutDelegate {
 extension MovieListViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images.count
+        return self.viewModel.itemCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as! MovieCell
-        let image = images[indexPath.item]
-        cell.posterImageView.image = image
+        cell.posterImageView.kf.setImage(with: URL(string: self.viewModel.items[indexPath.item].movie.posterUrl))
         return cell
     }
     
