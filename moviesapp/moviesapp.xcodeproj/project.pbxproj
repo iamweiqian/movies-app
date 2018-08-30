@@ -14,6 +14,7 @@
 		7DEB578B2138537D004BB8F3 /* MovieListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DEB57892138537D004BB8F3 /* MovieListViewController.xib */; };
 		7DEB579021385653004BB8F3 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEB578E21385653004BB8F3 /* MovieCell.swift */; };
 		7DEB579121385653004BB8F3 /* MovieCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DEB578F21385653004BB8F3 /* MovieCell.xib */; };
+		7DEB579421385F6C004BB8F3 /* PinterestLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEB579321385F6C004BB8F3 /* PinterestLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		7DEB57892138537D004BB8F3 /* MovieListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieListViewController.xib; sourceTree = "<group>"; };
 		7DEB578E21385653004BB8F3 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		7DEB578F21385653004BB8F3 /* MovieCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieCell.xib; sourceTree = "<group>"; };
+		7DEB579321385F6C004BB8F3 /* PinterestLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinterestLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 			children = (
 				7DEB578E21385653004BB8F3 /* MovieCell.swift */,
 				7DEB578F21385653004BB8F3 /* MovieCell.xib */,
+				7DEB579321385F6C004BB8F3 /* PinterestLayout.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -166,6 +169,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DEB579421385F6C004BB8F3 /* PinterestLayout.swift in Sources */,
 				7DEB579021385653004BB8F3 /* MovieCell.swift in Sources */,
 				7DEB578A2138537D004BB8F3 /* MovieListViewController.swift in Sources */,
 				7DEB5777213850FF004BB8F3 /* AppDelegate.swift in Sources */,

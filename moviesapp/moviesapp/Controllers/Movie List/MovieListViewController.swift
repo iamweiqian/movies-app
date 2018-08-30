@@ -19,7 +19,10 @@ class MovieListViewController: UIViewController {
         
         collectionView.register(UINib(nibName: "MovieCell", bundle: nil), forCellWithReuseIdentifier: "MovieCell")
         collectionView.dataSource = self
-        collectionView.delegate = self
+        if let layout = collectionView.collectionViewLayout as? PinterestLayout {
+            layout.delegate = self
+        }
+        collectionView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,15 +39,13 @@ class MovieListViewController: UIViewController {
 
 }
 
-extension MovieListViewController: UICollectionViewDelegateFlowLayout {
+extension MovieListViewController: PinterestLayoutDelegate {
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let numberOfColumns: CGFloat = 2
-        let width = collectionView.frame.size.width
-        let xInsets: CGFloat = 10
-        let cellSpacing: CGFloat = 5
+    func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat {
+        let image = images[indexPath.item]
+        let height = image.size.height
         
-        return CGSize(width: (width / numberOfColumns) - (xInsets + cellSpacing), height: (width / numberOfColumns) - (xInsets + cellSpacing))
+        return height
     }
     
 }
