@@ -10,6 +10,7 @@ import UIKit
 
 class MovieListViewController: UIViewController {
 
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var collectionView: UICollectionView!
     
     let images = [#imageLiteral(resourceName: "Polar Bear Pillow Case"), #imageLiteral(resourceName: "programming"), #imageLiteral(resourceName: "Polar Bear Pillow Case"), #imageLiteral(resourceName: "programming"), #imageLiteral(resourceName: "programming"), #imageLiteral(resourceName: "Polar Bear Pillow Case"), #imageLiteral(resourceName: "programming")]
