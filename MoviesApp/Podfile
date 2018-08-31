@@ -7,6 +7,6 @@ target 'MoviesApp' do
 
   # Pods for MoviesApp
   pod 'JSONParsing'
-  pod 'Kingfisher'
+  pod 'SDWebImage'
 
 end

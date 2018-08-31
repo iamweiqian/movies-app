@@ -37,7 +37,7 @@ class DetailsViewController: UIViewController {
 extension DetailsViewController {
     
     private func setupView() {
-        self.imageView.kf.setImage(with: URL(string: imageUrl!))
+        self.imageView.sd_setImage(with: URL(string: imageUrl!))
         self.titleLabel.text = movieTitle
         self.yearLabel.text = year
         self.descriptionLabel.text = movieDescription

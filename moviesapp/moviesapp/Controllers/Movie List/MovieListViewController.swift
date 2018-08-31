@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Kingfisher
+import SDWebImage
 
 class MovieListViewController: UIViewController {
 
@@ -109,7 +109,7 @@ extension MovieListViewController: UICollectionViewDataSource, UICollectionViewD
         cell.yearLabel.text = self.viewModel.items[indexPath.item].movie.year
         let url = self.viewModel.items[indexPath.item].movie.posterUrl
         if !url.isEmpty {
-            cell.posterImageView.kf.setImage(with: URL(string: url))
+            cell.posterImageView.sd_setImage(with: URL(string: url))
         } else {
             cell.posterImageView.image = #imageLiteral(resourceName: "ImageNotFound")
         }
