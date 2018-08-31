@@ -15,12 +15,14 @@ class MovieListViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     private var viewModel = MovieListViewModel()
+    private var refresher: UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupCollectionView()
         setupViewModel()
+        setupRefreshControl()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -33,7 +35,7 @@ class MovieListViewController: UIViewController {
 
 extension MovieListViewController {
     
-    private func setupCollectionView() {
+    func setupCollectionView() {
         self.collectionView.register(UINib(nibName: "MovieCell", bundle: nil), forCellWithReuseIdentifier: "MovieCell")
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
@@ -43,11 +45,10 @@ extension MovieListViewController {
         self.collectionView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10)
     }
     
-    private func setupViewModel() {
+    func setupViewModel() {
         self.viewModel.reloadHandler = {
             self.collectionView.reloadData()
         }
-        
         self.activityIndicator.isHidden = false
         self.activityIndicator.startAnimating()
         
@@ -55,6 +56,22 @@ extension MovieListViewController {
             self.activityIndicator.isHidden = true
             self.activityIndicator.stopAnimating()
         }
+    }
+    
+    func setupRefreshControl() {
+        self.refresher = UIRefreshControl()
+        self.refresher.addTarget(self, action: #selector(loadData), for: .valueChanged)
+        self.collectionView.refreshControl = refresher
+    }
+    
+    @objc func loadData(_ sender: Any) {
+        self.viewModel.fetchItems { (_) in
+            self.stopRefresher()
+        }
+    }
+    
+    func stopRefresher() {
+        self.refresher.endRefreshing()
     }
     
 }
