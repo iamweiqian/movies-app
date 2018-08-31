@@ -36,7 +36,7 @@
                 <constraint firstItem="Ubc-Na-OZ6" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="7qt-jQ-srZ"/>
                 <constraint firstItem="6HL-W4-avv" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="BAq-yG-SZU"/>
                 <constraint firstItem="Ubc-Na-OZ6" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="EsX-S4-LbK"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="6HL-W4-avv" secondAttribute="bottom" id="QTG-FI-XFj"/>
+                <constraint firstAttribute="baseline" secondItem="6HL-W4-avv" secondAttribute="bottom" id="Gj5-my-z95"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="6HL-W4-avv" secondAttribute="trailing" id="R9v-zF-Nyf"/>
                 <constraint firstItem="6HL-W4-avv" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="qZn-gs-NhX"/>
             </constraints>
