@@ -22,11 +22,8 @@ class DetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        imageView.kf.setImage(with: URL(string: imageUrl!))
-        titleLabel.text = movieTitle
-        yearLabel.text = year
-        descriptionLabel.text = movieDescription
+        
+        setupView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,4 +32,15 @@ class DetailsViewController: UIViewController {
         self.title = movieTitle
     }
 
+}
+
+extension DetailsViewController {
+    
+    private func setupView() {
+        self.imageView.kf.setImage(with: URL(string: imageUrl!))
+        self.titleLabel.text = movieTitle
+        self.yearLabel.text = year
+        self.descriptionLabel.text = movieDescription
+    }
+    
 }

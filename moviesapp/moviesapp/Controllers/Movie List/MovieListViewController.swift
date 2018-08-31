@@ -19,15 +19,8 @@ class MovieListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupCollectionView()
         setupViewModel()
-        
-        collectionView.register(UINib(nibName: "MovieCell", bundle: nil), forCellWithReuseIdentifier: "MovieCell")
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        if let layout = collectionView.collectionViewLayout as? PinterestLayout {
-            layout.delegate = self
-        }
-        collectionView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,9 +28,22 @@ class MovieListViewController: UIViewController {
         self.navigationController?.navigationBar.prefersLargeTitles = true
         self.title = "Movies"
     }
+
+}
+
+extension MovieListViewController {
+    
+    private func setupCollectionView() {
+        self.collectionView.register(UINib(nibName: "MovieCell", bundle: nil), forCellWithReuseIdentifier: "MovieCell")
+        self.collectionView.dataSource = self
+        self.collectionView.delegate = self
+        if let layout = self.collectionView.collectionViewLayout as? PinterestLayout {
+            layout.delegate = self
+        }
+        self.collectionView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10)
+    }
     
     private func setupViewModel() {
-        
         self.viewModel.reloadHandler = {
             self.collectionView.reloadData()
         }
@@ -50,7 +56,7 @@ class MovieListViewController: UIViewController {
             self.activityIndicator.stopAnimating()
         }
     }
-
+    
 }
 
 extension MovieListViewController: PinterestLayoutDelegate {
